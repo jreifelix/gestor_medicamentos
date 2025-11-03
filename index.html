@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Medicamentos</title>
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="app-title"><i class="fas fa-pills"></i> Gestor de Medicamentos</h1>
+                <div class="header-actions">
+                    <input type="text" id="searchInput" class="input-field" placeholder="Pesquisar medicamentos...">
+                    <button id="addProductBtn" class="btn primary icon-btn" aria-label="Adicionar Novo Medicamento"><i class="fas fa-plus"></i></button>
+                    <button id="exportBtn" class="btn secondary icon-btn" aria-label="Exportar para Excel"><i class="fas fa-file-excel"></i></button>
+                    <input type="file" id="importInput" accept=".csv" style="display: none;">
+                    <label for="importInput" id="importBtn" class="btn secondary icon-btn" role="button" aria-label="Importar de CSV"><i class="fas fa-file-upload"></i></label>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegação por Categorias -->
+    <nav class="nav-tabs">
+        <div class="container">
+            <div class="tabs" id="categoryTabs">
+                <!-- As abas das categorias serão geradas pelo JavaScript -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+        <div class="container">
+            <section id="stock-list" class="section active">
+                <div id="productsContainer" class="products-grid">
+                    <!-- Os cards dos medicamentos serão gerados aqui -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modal para Adicionar/Editar Medicamento -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Adicionar Novo Medicamento</h3>
+                <button class="modal-close" onclick="closeModal('productModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <form id="productForm">
+                <div class="modal-body form-grid">
+                    <input type="hidden" id="productId">
+                    <div class="form-group form-group-span-2">
+                        <label class="input-label">Nome do Medicamento</label>
+                        <input type="text" id="productName" class="input-field" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="input-label">Categoria</label>
+                        <select id="productCategory" class="input-field">
+                            <option value="Criança">Criança</option>
+                            <option value="Adulto">Adulto</option>
+                            <option value="Ambos">Ambos</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="input-label">Tipo</label>
+                        <select id="productType" class="input-field">
+                            <option value="Pastilhas">Pastilhas</option>
+                            <option value="Solúvel">Solúvel</option>
+                            <option value="Bomba">Bomba</option>
+                            <option value="Creme">Creme</option>
+							<option value="Xarope">Xarope</option>
+                            <option value="Outros">Outros</option>
+                        </select>
+                    </div>
+                    <div class="form-group form-group-span-2">
+                        <label class="input-label">Quantidade em Stock</label>
+                        <input type="number" id="productQuantity" class="input-field" required min="0" step="any">
+                    </div>
+					
+					<div class="form-group">
+						<label class="input-label">Data de Validade</label>
+						<input type="date" id="productExpiryDate" class="input-field" required>
+					</div>
+					
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn secondary" onclick="closeModal('productModal')">Cancelar</button>
+                    <button type="submit" class="btn primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
